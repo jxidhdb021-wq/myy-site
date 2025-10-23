@@ -1,0 +1,440 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>سایت سرورهای ماین‌کرافت</title>
+  <script src="/_sdk/element_sdk.js"></script>
+  <script src="/_sdk/data_sdk.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+        body {
+            box-sizing: border-box;
+            font-family: 'Tahoma', Arial, sans-serif;
+        }
+        
+        .minecraft-bg {
+            background: linear-gradient(135deg, #2d5a27 0%, #4a7c59 50%, #2d5a27 100%);
+        }
+        
+        .server-card {
+            background: linear-gradient(145deg, #3a3a3a, #2a2a2a);
+            border: 2px solid #4a4a4a;
+            transition: all 0.3s ease;
+        }
+        
+        .server-card:hover {
+            border-color: #00ff00;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+        }
+        
+        .nav-button {
+            background: linear-gradient(145deg, #4a7c59, #2d5a27);
+            transition: all 0.3s ease;
+        }
+        
+        .nav-button:hover {
+            background: linear-gradient(145deg, #5a8c69, #3d6a37);
+            transform: translateY(-2px);
+        }
+        
+        .comment-card {
+            background: linear-gradient(145deg, #f8f9fa, #e9ecef);
+            border-right: 4px solid #4a7c59;
+        }
+        
+        .loading-spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #4a7c59;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+  <style>@view-transition { navigation: auto; }</style>
+ </head>
+ <body class="minecraft-bg min-h-full"><!-- Navigation -->
+  <nav class="bg-black bg-opacity-50 backdrop-blur-sm sticky top-0 z-50">
+   <div class="max-w-6xl mx-auto px-4 py-4">
+    <div class="flex justify-between items-center">
+     <h1 id="site-title" class="text-2xl font-bold text-white">🎮 سایت سرورهای ماین‌کرافت</h1>
+     <div class="flex gap-4"><button onclick="showSection('home')" class="nav-button text-white px-6 py-2 rounded-lg font-semibold"> 🏠 خانه </button> <button onclick="showSection('servers')" class="nav-button text-white px-6 py-2 rounded-lg font-semibold"> 🖥️ سرورها </button> <button onclick="showSection('comments')" class="nav-button text-white px-6 py-2 rounded-lg font-semibold"> 💬 نظرات </button>
+     </div>
+    </div>
+   </div>
+  </nav><!-- Home Section -->
+  <section id="home-section" class="min-h-screen"><!-- Hero Section -->
+   <div class="max-w-6xl mx-auto px-4 py-20 text-center">
+    <div class="bg-black bg-opacity-30 backdrop-blur-sm rounded-3xl p-12 mb-12">
+     <h2 class="text-5xl font-bold text-white mb-6">⛏️ به دنیای سرورهای ماین‌کرافت خوش آمدید</h2>
+     <p class="text-xl text-gray-200 mb-8 leading-relaxed">بهترین سرورهای ماین‌کرافت را کشف کنید و تجربه‌ای فراموش‌نشدنی داشته باشید</p><button onclick="scrollToDescription()" class="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl text-lg font-semibold transition-all duration-300 transform hover:scale-105"> 📖 بیشتر بدانید </button>
+    </div>
+   </div><!-- Description Section -->
+   <div id="description-section" class="max-w-6xl mx-auto px-4 py-16">
+    <div class="bg-white bg-opacity-95 backdrop-blur-sm rounded-3xl p-12 shadow-2xl">
+     <h3 class="text-4xl font-bold text-gray-800 mb-8 text-center">🌟 درباره سایت ما</h3>
+     <div class="grid md:grid-cols-2 gap-8 mb-12">
+      <div class="space-y-6">
+       <div class="flex items-start gap-4"><span class="text-3xl">🎯</span>
+        <div>
+         <h4 class="text-xl font-bold text-gray-800 mb-2">هدف ما</h4>
+         <p id="site-description" class="text-gray-600 leading-relaxed">ارائه بهترین و معتبرترین سرورهای ماین‌کرافت برای تمام علاقه‌مندان این بازی فوق‌العاده</p>
+        </div>
+       </div>
+       <div class="flex items-start gap-4"><span class="text-3xl">🛡️</span>
+        <div>
+         <h4 class="text-xl font-bold text-gray-800 mb-2">امنیت</h4>
+         <p class="text-gray-600 leading-relaxed">تمام سرورهای معرفی شده توسط تیم ما بررسی و تأیید شده‌اند</p>
+        </div>
+       </div>
+      </div>
+      <div class="space-y-6">
+       <div class="flex items-start gap-4"><span class="text-3xl">🚀</span>
+        <div>
+         <h4 class="text-xl font-bold text-gray-800 mb-2">کیفیت بالا</h4>
+         <p class="text-gray-600 leading-relaxed">سرورهای پرسرعت و پایدار با بهترین تجربه بازی</p>
+        </div>
+       </div>
+       <div class="flex items-start gap-4"><span class="text-3xl">📞</span>
+        <div>
+         <h4 class="text-xl font-bold text-gray-800 mb-2">پشتیبانی</h4>
+         <p class="text-gray-600 leading-relaxed">تیم پشتیبانی ما آماده کمک به شما در ایمیل: <span id="support-email" class="font-semibold text-green-600">habibrzayi22@gmail.com</span></p>
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="text-center"><button onclick="showSection('servers')" class="bg-green-600 hover:bg-green-700 text-white px-10 py-4 rounded-xl text-lg font-semibold transition-all duration-300 transform hover:scale-105"> 🖥️ مشاهده سرورها </button>
+     </div>
+    </div>
+   </div>
+  </section><!-- Servers Section -->
+  <section id="servers-section" class="min-h-screen hidden">
+   <div class="max-w-6xl mx-auto px-4 py-20">
+    <div class="text-center mb-12">
+     <h2 class="text-4xl font-bold text-white mb-4">🖥️ لیست سرورهای ماین‌کرافت</h2>
+     <p class="text-xl text-gray-200">بهترین سرورها را انتخاب کنید</p>
+    </div>
+    <div id="servers-container" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"><!-- Server cards will be populated by JavaScript -->
+    </div>
+    <div id="no-servers-message" class="text-center py-20">
+     <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-3xl p-12"><span class="text-6xl mb-4 block">📭</span>
+      <h3 class="text-2xl font-bold text-white mb-4">هنوز سروری اضافه نشده</h3>
+      <p class="text-gray-200">به زودی سرورهای فوق‌العاده‌ای اضافه خواهند شد!</p>
+     </div>
+    </div>
+   </div>
+  </section><!-- Comments Section -->
+  <section id="comments-section" class="min-h-screen hidden">
+   <div class="max-w-4xl mx-auto px-4 py-20">
+    <div class="text-center mb-12">
+     <h2 class="text-4xl font-bold text-white mb-4">💬 نظرات کاربران</h2>
+     <p class="text-xl text-gray-200">نظر شما برای ما مهم است</p>
+    </div><!-- Comment Form -->
+    <div class="bg-white bg-opacity-95 backdrop-blur-sm rounded-3xl p-8 mb-8">
+     <h3 class="text-2xl font-bold text-gray-800 mb-6">✍️ نظر خود را بنویسید</h3>
+     <form id="comment-form" class="space-y-4">
+      <div><label for="author-name" class="block text-sm font-semibold text-gray-700 mb-2">نام شما:</label> <input type="text" id="author-name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent" placeholder="نام خود را وارد کنید">
+      </div>
+      <div><label for="comment-text" class="block text-sm font-semibold text-gray-700 mb-2">نظر شما:</label> <textarea id="comment-text" required rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent resize-none" placeholder="نظر خود را در مورد سایت یا سرورها بنویسید..."></textarea>
+      </div><button type="submit" id="submit-comment-btn" class="bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 flex items-center gap-2"> <span>📝 ارسال نظر</span>
+       <div id="comment-loading" class="loading-spinner hidden"></div></button>
+     </form>
+    </div><!-- Comments List -->
+    <div id="comments-container" class="space-y-4"><!-- Comments will be populated by JavaScript -->
+    </div>
+    <div id="no-comments-message" class="text-center py-12">
+     <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-3xl p-8"><span class="text-4xl mb-4 block">💭</span>
+      <h3 class="text-xl font-bold text-white mb-2">هنوز نظری ثبت نشده</h3>
+      <p class="text-gray-200">اولین نفری باشید که نظر می‌دهد!</p>
+     </div>
+    </div>
+   </div>
+  </section>
+  <script>
+        // Configuration object
+        const defaultConfig = {
+            site_title: "🎮 سایت سرورهای ماین‌کرافت",
+            site_description: "ارائه بهترین و معتبرترین سرورهای ماین‌کرافت برای تمام علاقه‌مندان این بازی فوق‌العاده",
+            support_email: "habibrzayi@gmail.com"
+        };
+
+        // Static server data (reference content)
+        const staticServers = [
+            {
+                id: "server1",
+                name: "🏰 سرور قلعه‌ای",
+                description: "سرور بقا با قلعه‌های فوق‌العاده",
+                players: "50/100",
+                status: "آنلاین",
+                ip: "castle.server.com"
+            },
+            {
+                id: "server2", 
+                name: "⚔️ سرور جنگی",
+                description: "PvP و جنگ‌های حماسی",
+                players: "75/150",
+                status: "آنلاین",
+                ip: "war.server.com"
+            },
+            {
+                id: "server3",
+                name: "🏗️ سرور ساخت و ساز",
+                description: "Creative mode برای سازندگان",
+                players: "30/80",
+                status: "آنلاین", 
+                ip: "build.server.com"
+            }
+        ];
+
+        let currentSection = 'home';
+        let comments = [];
+
+        // Data handler for comments
+        const dataHandler = {
+            onDataChanged(data) {
+                comments = data.filter(item => item.type === 'comment');
+                renderComments();
+            }
+        };
+
+        // Initialize the application
+        async function initApp() {
+            // Initialize Data SDK
+            const initResult = await window.dataSdk.init(dataHandler);
+            if (!initResult.isOk) {
+                console.error("Failed to initialize data SDK");
+            }
+
+            // Initialize Element SDK
+            if (window.elementSdk) {
+                window.elementSdk.init({
+                    defaultConfig,
+                    render,
+                    mapToCapabilities,
+                    mapToEditPanelValues
+                });
+            }
+
+            renderServers();
+        }
+
+        // Render function for Element SDK
+        async function render(config) {
+            const siteTitle = config.site_title || defaultConfig.site_title;
+            const siteDescription = config.site_description || defaultConfig.site_description;
+            const supportEmail = config.support_email || defaultConfig.support_email;
+
+            document.getElementById('site-title').textContent = siteTitle;
+            document.getElementById('site-description').textContent = siteDescription;
+            document.getElementById('support-email').textContent = supportEmail;
+        }
+
+        // Capabilities mapping
+        function mapToCapabilities(config) {
+            return {
+                recolorables: [],
+                borderables: [],
+                fontEditable: undefined,
+                fontSizeable: undefined
+            };
+        }
+
+        // Edit panel values mapping
+        function mapToEditPanelValues(config) {
+            return new Map([
+                ["site_title", config.site_title || defaultConfig.site_title],
+                ["site_description", config.site_description || defaultConfig.site_description],
+                ["support_email", config.support_email || defaultConfig.support_email]
+            ]);
+        }
+
+        // Navigation functions
+        function showSection(section) {
+            // Hide all sections
+            document.getElementById('home-section').classList.add('hidden');
+            document.getElementById('servers-section').classList.add('hidden');
+            document.getElementById('comments-section').classList.add('hidden');
+            
+            // Show selected section
+            document.getElementById(section + '-section').classList.remove('hidden');
+            document.getElementById(section + '-section').classList.add('fade-in');
+            
+            currentSection = section;
+        }
+
+        function scrollToDescription() {
+            document.getElementById('description-section').scrollIntoView({ 
+                behavior: 'smooth' 
+            });
+        }
+
+        // Server rendering
+        function renderServers() {
+            const container = document.getElementById('servers-container');
+            const noServersMessage = document.getElementById('no-servers-message');
+            
+            if (staticServers.length === 0) {
+                container.innerHTML = '';
+                noServersMessage.classList.remove('hidden');
+                return;
+            }
+            
+            noServersMessage.classList.add('hidden');
+            
+            container.innerHTML = staticServers.map(server => `
+                <div class="server-card rounded-2xl p-6 text-white fade-in">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-xl font-bold">${server.name}</h3>
+                        <span class="bg-green-500 text-xs px-3 py-1 rounded-full font-semibold">
+                            ${server.status}
+                        </span>
+                    </div>
+                    <p class="text-gray-300 mb-4">${server.description}</p>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">بازیکنان:</span>
+                            <span class="font-semibold">${server.players}</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">IP سرور:</span>
+                            <span class="font-mono text-green-400">${server.ip}</span>
+                        </div>
+                    </div>
+                    <button onclick="copyServerIP('${server.ip}')" 
+                            class="w-full mt-4 bg-green-600 hover:bg-green-700 py-2 rounded-lg font-semibold transition-all duration-300">
+                        📋 کپی IP
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        // Copy server IP
+        function copyServerIP(ip) {
+            navigator.clipboard.writeText(ip).then(() => {
+                showToast('✅ IP سرور کپی شد!');
+            }).catch(() => {
+                showToast('❌ خطا در کپی کردن');
+            });
+        }
+
+        // Comment functions
+        async function submitComment(event) {
+            event.preventDefault();
+            
+            const authorName = document.getElementById('author-name').value.trim();
+            const commentText = document.getElementById('comment-text').value.trim();
+            
+            if (!authorName || !commentText) {
+                showToast('❌ لطفاً تمام فیلدها را پر کنید');
+                return;
+            }
+
+            if (comments.length >= 999) {
+                showToast('❌ حداکثر تعداد نظرات به پایان رسیده است');
+                return;
+            }
+            
+            // Show loading state
+            const submitBtn = document.getElementById('submit-comment-btn');
+            const loading = document.getElementById('comment-loading');
+            submitBtn.disabled = true;
+            loading.classList.remove('hidden');
+            
+            const newComment = {
+                id: Date.now().toString(),
+                type: 'comment',
+                content: commentText,
+                author: authorName,
+                timestamp: new Date().toISOString()
+            };
+            
+            const result = await window.dataSdk.create(newComment);
+            
+            // Hide loading state
+            submitBtn.disabled = false;
+            loading.classList.add('hidden');
+            
+            if (result.isOk) {
+                document.getElementById('comment-form').reset();
+                showToast('✅ نظر شما با موفقیت ثبت شد!');
+            } else {
+                showToast('❌ خطا در ثبت نظر. لطفاً دوباره تلاش کنید');
+            }
+        }
+
+        // Render comments
+        function renderComments() {
+            const container = document.getElementById('comments-container');
+            const noCommentsMessage = document.getElementById('no-comments-message');
+            
+            if (comments.length === 0) {
+                container.innerHTML = '';
+                noCommentsMessage.classList.remove('hidden');
+                return;
+            }
+            
+            noCommentsMessage.classList.add('hidden');
+            
+            // Sort comments by timestamp (newest first)
+            const sortedComments = [...comments].sort((a, b) => 
+                new Date(b.timestamp) - new Date(a.timestamp)
+            );
+            
+            container.innerHTML = sortedComments.map(comment => {
+                const date = new Date(comment.timestamp);
+                const formattedDate = date.toLocaleDateString('fa-IR', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
+                
+                return `
+                    <div class="comment-card rounded-2xl p-6 fade-in">
+                        <div class="flex justify-between items-start mb-3">
+                            <h4 class="font-bold text-gray-800 text-lg">👤 ${comment.author}</h4>
+                            <span class="text-sm text-gray-500">${formattedDate}</span>
+                        </div>
+                        <p class="text-gray-700 leading-relaxed">${comment.content}</p>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Toast notification
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.className = 'fixed top-4 right-4 bg-black bg-opacity-80 text-white px-6 py-3 rounded-lg z-50 fade-in';
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.remove();
+            }, 3000);
+        }
+
+        // Event listeners
+        document.getElementById('comment-form').addEventListener('submit', submitComment);
+
+        // Initialize app when page loads
+        document.addEventListener('DOMContentLoaded', initApp);
+    </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9931c9f7a4e2be94',t:'MTc2MTIyODMyMi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
+
